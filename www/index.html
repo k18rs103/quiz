@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
   <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
   <script src="components/loader.js"></script>
   <script src="lib/onsenui/js/onsenui.min.js"></script>
@@ -34,29 +34,29 @@
       document.documentElement.setAttribute('onsflag-iphonex-portrait', '');
       document.documentElement.setAttribute('onsflag-iphonex-landscape', '');
     }
+    ons.bootstrap();
   </script>
+  <!-- JavaScriptの読み込みを設定 -->
+    <script src="js/app.js"></script>
 </head>
 <body>
   <ons-splitter>
     <ons-splitter-side id="menu" side="left" width="220px" collapse swipeable>
       <ons-page>
         <ons-list>
-          <ons-list-item onclick="fn.load('home.html')" tappable>
-            Home
+          <ons-list-item onclick="fn.load('page1.html')" tappable>
+            page1
           </ons-list-item>
-          <ons-list-item onclick="fn.load('settings.html')" tappable>
-            Settings
-          </ons-list-item>
-          <ons-list-item onclick="fn.load('about.html')" tappable>
-            About
+          <ons-list-item onclick="fn.load('page2.html')" tappable>
+            page2
           </ons-list-item>
         </ons-list>
       </ons-page>
     </ons-splitter-side>
-    <ons-splitter-content id="content" page="home.html"></ons-splitter-content>
+    <ons-splitter-content id="content" page="page1.html"></ons-splitter-content>
   </ons-splitter>
 
-  <ons-template id="home.html">
+  <ons-template id="page1.html">
     <ons-page>
       <ons-toolbar>
         <div class="left">
@@ -64,8 +64,21 @@
             <ons-icon icon="ion-navicon, material:md-menu"></ons-icon>
           </ons-toolbar-button>
         </div>
+        <!-- ツールバーの文言を変更 -->
+         <div class="center">データ保存</div>
+     </ons-toolbar>
+
+     <div style="text-align: center">
+         <!-- タイトルの文言を変更 -->
+         <h1>データ保存</h1>
+         <!-- ボタンがクリックされた時にsaveDataメソッドを呼び出す -->
+         <ons-button onclick="saveData()">
+             データを保存する
+         </ons-button>
+         <div id="message"></div>
+     </div>
         <div class="center">
-          Main
+          page1
         </div>
       </ons-toolbar>
       <p style="text-align: center; opacity: 0.6; padding-top: 20px;">
@@ -74,7 +87,7 @@
     </ons-page>
   </ons-template>
 
-  <ons-template id="settings.html">
+  <ons-template id="page2.html">
   <ons-page>
     <ons-toolbar>
       <div class="left">
@@ -83,26 +96,12 @@
         </ons-toolbar-button>
       </div>
       <div class="center">
-        Settings
+        page2
       </div>
     </ons-toolbar>
   </ons-page>
   </ons-template>
-
-  <ons-template id="about.html">
-  <ons-page>
-    <ons-toolbar>
-      <div class="left">
-        <ons-toolbar-button onclick="fn.open()">
-          <ons-icon icon="ion-navicon, material:md-menu"></ons-icon>
-        </ons-toolbar-button>
-      </div>
-      <div class="center">
-        About
-      </div>
-    </ons-toolbar>
-  </ons-page>
-  </ons-template>
-
+ <ons-sliding-menu var="app.slidingMenu" menu-page="menu.html" main-page="page1.html" side="left" type="overlay" max-slide-distance="200px">
+    </ons-sliding-menu>
 </body>
 </html>
